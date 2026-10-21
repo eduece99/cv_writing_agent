@@ -20,8 +20,8 @@ These files, where applicable, are elaborated in the SKILL.MD files for more spe
 If they do not exist, or if the agent is unsure about any information, it should ask the user for clarification before proceeding.  In addition, doubtful areas *should be marked on the CV* with a comment and also written in the report, so that the user can review and provide clarification.  The agent should not make assumptions about the user's intent, and should always seek clarification when in doubt.
 
 # Output Files
-- *Generated CV*: a single file: `output/[datetime]/cv_autogen.docx`.  
-- *Generated Letter*: a single file: `output/[datetime]/cl_autogen.docx`.
+- *Generated CV*: a single file: `output/[datetime]/cv.docx`.  
+- *Generated Letter*: a single file: `output/[datetime]/cover_letter.docx`.
 - *Report*: a single file: `output/[datetime]/report.txt`.  This file should contain a summary of the process, including key deviations from the template(s), any issues encountered, any assumptions made, and any areas where clarification was needed from the user.  The report should also include a summary of the candidate's qualifications and how they align with the job requirements giving a score from 1-10 (10 is perfect alignment, 1 is no alignment whatsoever), as well as any recommendations for further action.
 - *AGENTS.MD*: a single file: `./AGENTS.MD`.  This file should contain any information that would accelerate future runs of the agents, such as recommended software to be used.  More info in *Shortcuts* section below.
 

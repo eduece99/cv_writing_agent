@@ -16,7 +16,7 @@ The *Generated Letter* should be written generally adhering to the template.  Ke
 - mention one or two specific achievements or experiences that demonstrate the candidate's qualifications for the role, extracted from the *Candidate Bio* which best matches the *Job Description* requirements
 - End with the following - "I would welcome the opportunity to discuss my qualifications further and learn more about the role. Thank you for considering my application. I look forward to the possibility of contributing to your team.  
 
-Yours sincerely, [Candidate Name]"
+Yours faithfully, [Candidate Name]"
 
 
 

@@ -14,6 +14,10 @@ Your 4 input files go into the `ref` folder, ideally named:
 - `bio.txt`
 - `job_description.txt`
 
+**Example prompt** - ```
+Please write me a CV and covering letter relating to the job description in this URL - [URL]
+```
+
 Other file formats besides .txt and .docx are allowed.  The agent should ask you about this.
 
 Good luck!
