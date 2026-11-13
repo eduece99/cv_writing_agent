@@ -15,7 +15,7 @@ Your 4 input files go into the `ref` folder, ideally named:
 - `job_description.txt`
 
 **Example prompt** - ```
-Please write me a CV and covering letter relating to the job description in this URL - [URL]
+Please write me a CV and covering letter relating to the job description in this URL - [URL] using the files "cv_template.docx", "cl_template.docx", and "Profile.pdf" in the "ref" folder
 ```
 
 Other file formats besides .txt and .docx are allowed.  The agent should ask you about this.

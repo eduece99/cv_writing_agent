@@ -9,10 +9,10 @@ This is an agentic project which is not programming-language centered.  The aim 
 
 Any agent should check for the existence of the following files in the `ref` directory before proceeding:
 
-- *CV Template*: A template should be provided by the user, ideally named `cv_template.docx`, which will be used to generate the final CV. The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.
-- *Letter Template*: A template should be provided by the user, ideally named `cl_template.docx`, which will be used to generate the final covering letter. 
-- *Candidate Bio*: a bio of the candidate, ideally named `bio.txt` or `bio.docx` or `bio.pdf`, which will be used to generate the final CV. The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.  One example could be the candidate's LinkedIn profile, which can be used to extract relevant information for the CV and covering letter.  The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.
-- *Job Description*: a job description, ideally named `job_description.txt` or `job_description.docx`, which will be used to generate the final CV.  If no job description file is provided, a URL to a web page can be presented.  The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.  There should be a requirements section in the job description, which will be used to generate the final CV. 
+- *CV Template*: A template should be provided by the user, ideally named `ref/cv_template.docx`, which will be used to generate the final CV. The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.  If the file does not exist, try looking for files with "CV" or "Curriculum" or "resume" in the name.  If these do not exist, *please prompt the user to provide a CV template*.   
+- *Letter Template*: A template should be provided by the user, ideally named `ref/cl_template.docx`, which will be used to generate the final covering letter.  If does not exist, try looking for files with "cover" or "letter" in the name.  If these do not exist, *please prompt the user to provide a covering letter template*.  The agent should ensure that the generated letter adheres to the template's formatting and style guidelines.
+- *Candidate Bio*: a bio of the candidate, ideally named `ref/bio.txt` or `ref/bio.docx` or `ref/bio.pdf`, which will be used to generate the final CV. One example could be the candidate's LinkedIn profile, which can be used to extract relevant information for the CV and covering letter.  *This should not be used for formatting*
+- *Job Description*: a job description, ideally named `ref/job_description.txt` or `ref/job_description.docx`, which will be used to generate the final CV.  If no job description file is provided, a URL to a web page can be presented.  The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.  There should be a requirements section in the job description, which will be used to generate the final CV. 
 
 
 These files, where applicable, are elaborated in the SKILL.MD files for more specifics (especially naming and formatting), and should be present in the tracked repository or working directory before proceeding.  The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.
@@ -22,7 +22,16 @@ If they do not exist, or if the agent is unsure about any information, it should
 # Output Files
 - *Generated CV*: a single file: `output/[datetime]/cv.docx`.  
 - *Generated Letter*: a single file: `output/[datetime]/cover_letter.docx`.
-- *Report*: a single file: `output/[datetime]/report.txt`.  This file should contain a summary of the process, including key deviations from the template(s), any issues encountered, any assumptions made, and any areas where clarification was needed from the user.  The report should also include a summary of the candidate's qualifications and how they align with the job requirements giving a score from 1-10 (10 is perfect alignment, 1 is no alignment whatsoever), as well as any recommendations for further action.
+- *Report*: a single markdown file: `output/[datetime]/report.md`.  This file should contain a summary of the process, including:
+  - the paths to the input files used (important for sanity checking)
+  - key deviations from the template(s)
+  - any issues encountered
+  - any assumptions made
+  - any areas where clarification was needed from the user
+  - the steps taken from the prompt to generating the final outputs.  This includes command line programs executed, which should be outputted as a bulleted list.  
+- *Programs and Scripts*:  Any code mentioned (e.g Python command line commands) should be outputted as additional files in the output folder. 
+  
+  The report should also include a summary of the candidate's qualifications and how they align with the job requirements giving a score from 1-10 (10 is perfect alignment, 1 is no alignment whatsoever), as well as any recommendations for further action.
 - *AGENTS.MD*: a single file: `./AGENTS.MD`.  This file should contain any information that would accelerate future runs of the agents, such as recommended software to be used.  More info in *Shortcuts* section below.
 
 [datetime] should be replaced with the current date and time in the format `YYYYMMDD_HHMMSS`, e.g., `20230401_153000`.  The agent should ensure that the generated CV adheres to the template's formatting and style guidelines.

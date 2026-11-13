@@ -1,0 +1,40 @@
+{
+  "author": "CV Agent",
+  "initials": "CV",
+  "cv_max_pages": 2,
+  "letter_pages": 1,
+  "disclosure_needle": "This CV was generated with the use of an AI assistant",
+  "disclosure_model": "GLM, via OpenCode",
+  "forbidden_in_cv": [
+    "Docker", "Kubernetes", "Terraform", "AWS", "GCP", "Google Cloud",
+    "FastAPI", "Django", "React", "Node.js", "Vue.js", "TypeScript",
+    "microservices", "serverless", ".NET"
+  ],
+  "warn_in_letter": [
+    "Docker", "Kubernetes", "Terraform", "AWS", "GCP", "Google Cloud",
+    "FastAPI", "Django", "React", "Node.js", "Vue.js", "TypeScript",
+    "microservices", "serverless", ".NET"
+  ],
+  "doubtful": [
+    {
+      "needle": "First class",
+      "comment": "Stated in the CV template but not confirmed in Profile.pdf - please verify."
+    },
+    {
+      "needle": "Applications and Variations of the Maximum Common Subgraph",
+      "comment": "Thesis title from the CV template only; not stated in Profile.pdf - please confirm."
+    },
+    {
+      "needle": "managed daily through Agile",
+      "comment": "Agile/Gantt reporting from the CV template only; not stated in Profile.pdf - please confirm."
+    },
+    {
+      "needle": "subsequently promoted",
+      "comment": "The promotion is from the CV template; Profile.pdf mentions managing a data scientist but not a promotion - please confirm."
+    },
+    {
+      "needle": "Non-Professional Activities",
+      "comment": "From the CV template only; not present in Profile.pdf - please confirm."
+    }
+  ]
+}

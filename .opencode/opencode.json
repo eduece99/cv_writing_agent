@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // Reuse the existing GitHub Copilot sources instead of duplicating them.
+  "instructions": [
+    ".github/copilot-instructions.md",
+    "AGENTS.MD"
+  ],
+  "skills": [
+    ".github/skills"
+  ]
+}

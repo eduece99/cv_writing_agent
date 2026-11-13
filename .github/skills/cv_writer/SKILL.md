@@ -25,3 +25,5 @@ References are not necessary to include in the CV, but if the user requests them
 
 
 Please do not lie or make up things.  Nothing should be written in the *Generated CV* that is not supported by the *Candidate Bio*.  If the agent is unsure about any information, it should ask the user for clarification before proceeding.  In addition, doubtful areas *should be marked on the CV* with a comment, so that the user can review and provide clarification.  The agent should not make assumptions about the user's intent, and should always seek clarification when in doubt.
+
+Finally, please put the following at the end of the CV file in a smaller font (e.g. font sizes 8 or 10): "This CV was generated with the use of an AI assistant [insert model name here] and thereafter proof-read.  Please visit my github for details."
