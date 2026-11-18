@@ -71,7 +71,7 @@ def scan(text: str, terms):
     return hits
 
 
-def check(outdir: Path) -> int:
+def check(outdir: Path, cv_only: bool = False) -> int:
     fails, warns = [], []
 
     def report(ok, msg):
@@ -82,7 +82,8 @@ def check(outdir: Path) -> int:
     print(f"=== check_outputs: {outdir.relative_to(BASE)} ===")
 
     # 1. files exist
-    for name in ("cv", "cover_letter"):
+    wanted = ["cv"] if cv_only else ["cv", "cover_letter"]
+    for name in wanted:
         docx = outdir / f"{name}.docx"
         report(docx.exists(), f"{name}.docx exists")
         if docx.exists():
@@ -91,20 +92,29 @@ def check(outdir: Path) -> int:
                 warns.append(f"{name}.pdf missing — run LibreOffice conversion")
 
     # 2. page counts
-    cv_pages = pdf_pages(outdir / "cv.pdf")
-    letter_pages = pdf_pages(outdir / "cover_letter.pdf")
-    report(
-        cv_pages is not None and cv_pages <= CONFIG["cv_max_pages"],
-        f"cv.pdf pages: {cv_pages} (limit {CONFIG['cv_max_pages']})"
-        if cv_pages is not None
-        else "cv.pdf unreadable/missing — cannot verify page count",
-    )
-    report(
-        letter_pages == CONFIG["letter_pages"],
-        f"cover_letter.pdf pages: {letter_pages} (required {CONFIG['letter_pages']})"
-        if letter_pages is not None
-        else "cover_letter.pdf unreadable/missing — cannot verify page count",
-    )
+    if cv_only:
+        cv_pages = pdf_pages(outdir / "cv.pdf")
+        report(
+            cv_pages is not None and cv_pages <= CONFIG["cv_max_pages"],
+            f"cv.pdf pages: {cv_pages} (limit {CONFIG['cv_max_pages']})"
+            if cv_pages is not None
+            else "cv.pdf unreadable/missing — cannot verify page count",
+        )
+    else:
+        cv_pages = pdf_pages(outdir / "cv.pdf")
+        letter_pages = pdf_pages(outdir / "cover_letter.pdf")
+        report(
+            cv_pages is not None and cv_pages <= CONFIG["cv_max_pages"],
+            f"cv.pdf pages: {cv_pages} (limit {CONFIG['cv_max_pages']})"
+            if cv_pages is not None
+            else "cv.pdf unreadable/missing — cannot verify page count",
+        )
+        report(
+            letter_pages == CONFIG["letter_pages"],
+            f"cover_letter.pdf pages: {letter_pages} (required {CONFIG['letter_pages']})"
+            if letter_pages is not None
+            else "cover_letter.pdf unreadable/missing — cannot verify page count",
+        )
 
     # 3. forbidden claims
     cv_text = doc_text(outdir / "cv.docx") if (outdir / "cv.docx").exists() else ""
@@ -116,7 +126,7 @@ def check(outdir: Path) -> int:
 
     letter_text = (
         doc_text(outdir / "cover_letter.docx")
-        if (outdir / "cover_letter.docx").exists()
+        if (outdir / "cover_letter.docx").exists() and not cv_only
         else ""
     )
     letter_hits = scan(letter_text, CONFIG["warn_in_letter"])
@@ -160,8 +170,10 @@ def check(outdir: Path) -> int:
 
 
 def main():
-    if len(sys.argv) > 1:
-        outdir = Path(sys.argv[1])
+    cv_only = "--cv-only" in sys.argv
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if args:
+        outdir = Path(args[0])
     else:  # newest output/YYYYMMDD_HHMMSS folder
         dirs = sorted((BASE / "output").glob("[0-9]" * 8 + "_" + "[0-9]" * 6))
         if not dirs:
@@ -173,7 +185,7 @@ def main():
     if not outdir.is_dir():
         print(f"not a directory: {outdir}")
         return 1
-    return check(outdir)
+    return check(outdir, cv_only=cv_only)
 
 
 if __name__ == "__main__":

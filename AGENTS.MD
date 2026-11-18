@@ -2,13 +2,15 @@
 
 ## Current run
 
-- Targeted role: **Senior Backend Developer, Cresset** (JD saved at `ref/job_description.txt`, source https://cressetgroup.bamboohr.com/careers/146). Hybrid Cambridgeshire (office Litlington/Royston). Drug-discovery software (Flare/Spark/Blaze). JD: Python backend (FastAPI/Django), REST APIs, testing/CI/CD, AI coding assistants, AWS/Docker (not claimed — see standing rule), desirable: scientific software and long-running computational workloads.
+- Targeted role: **Staff Backend Engineer, Altium (Renesas Group)** (JD at `ref/job_description_altium.txt`, source https://renesas.dejobs.org/cambridge-gbr/staff-backend-engineer/F6BA8AF1917C454381A5A8DB66B23A26). Cambridge GBR **on-site**. Platform API/gateway/SDKs/MCP + Developer Center for "users and AI clients". C# preferred, Python/Golang/JS; Azure named as a cloud-plus (claimable); Docker/K8s/C#/Golang/SaaS/user-facing docs not claimed.
+- Previous run same day: `output/20261116_151242/` (Benchling Solution Consultant – R&D, CV-only + ai_tools_summary.md — the AI summary is reusable for future applications). Older: `output/20261113_170500/` (Cresset), `output/20261113_165507/` (Molyon), `output/20261113_164945/` (Molyon, superseded).
 - Candidate source: `ref/Profile.pdf` (updated 2026-11-13: Astex now "November 2023 – November 2026", location "Greater Cambridge Area").
 - User confirmations: **no GCP experience** (never mention GCP in CV/letter); **German (basic) may be included**.
-- Latest output: `output/20261113_170500/` (Cresset). Other runs this day: `output/20261113_165507/` (Molyon, revision 2), `output/20261113_164945/` (Molyon, superseded).
-- Outputs: `output/YYYYMMDD_HHMMSS/` containing `cv.docx`, `cover_letter.docx`, `cv.pdf`, `cover_letter.pdf`, `generate_documents.py` and `report.md`.
+- Outputs: `output/YYYYMMDD_HHMMSS/` containing `cv.docx`, `cover_letter.docx` (unless letter-less), PDFs, `generate_documents.py` and `report.md`.
 
 ## Tooling (added 2026-11-13)
+
+- **JD retrieval — dejobs.org sites (Renesas/Altium, DHI "JobSyn" platform)**: the job page is a Nuxt SPA; the full JD is at `https://microsites.dejobs.org/ALL_JOBS/{guid}.json` (guid from the URL). The search API (`prod-search-api.jobsyn.org/api/`) only serves `v1/complete/*` autocomplete. Ashby sites (Benchling): full JD is embedded in the page HTML as JSON-LD `JobPosting` — fetch with format html; the posting API returns 401.
 
 - **OpenCode commands**: `/cv <JD url or pasted text>` (full application run), `/letter <job/revision>` (cover letter only), `/check [folder]` (run the verifier). Defined in `.opencode/commands/*.md` — the standard run procedure lives there, so new sessions follow it without improvisation.
 - **`tools/docgen_common.py`** — shared generation helpers (`new_from_template`, `builder`, `set_text`, `first_rpr`, `apply_doubtful_comments`, `add_disclosure`, `convert_pdfs`). New `generate_documents.py` scripts should import this and contain only content + the proto-paragraph map (see its docstring).
